@@ -1,0 +1,22 @@
+<body>
+{{> loginButtons}}
+{{> chatBox}}
+{{> messagebox}}
+</body>
+
+<template name="messagebox">
+  {{#if currentUser}}
+  <form>
+        <input type="text" name="mesg">
+        <input type="submit" value="Enter">
+  </form>
+  {{/if}}
+</template>
+
+<template name= "chatBox">
+{{#each messages}}
+  <ul>
+  <li><h2>{{sentBy}} said:</h2></li><h3>{{body}}</h3> <p> @ {{createdAt}}</p>
+  </ul>
+{{/each}}
+</template>
