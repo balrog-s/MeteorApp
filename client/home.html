@@ -5,25 +5,36 @@
 {{> loginButtons}}
 {{> chatBox}}
 {{> messagebox}}
+{{> chatButton}}
 </body>
 
 <template name="messagebox">
   <div class="msgEnter">
-  {{#if currentUser}}
-  <form class="messageContent">
+    {{#if currentUser}}
+      <form class="messageContent">
         <input type="text" name="mesg">
         <input type="submit" value="Enter">
-  </form>
-  {{/if}}
+    </form>
+    {{/if}}
   </div>
 </template>
 
+<template name= "chatButton">
+  <form class="chatOpen">
+    <input type="submit" value="Open Chat">
+  </form>
+</template>
+
 <template name= "chatBox">
-{{#each messages}}
-<div class="box">
-<ul>
-  <h2>{{sentBy}} said: {{body}}</h2> <p> @ {{createdAt}}</p>
-  </ul>
-  </div>
-{{/each}}
+{{#if checkChat}}
+<div class="chatBoxBg">
+  {{#each messages}}
+    <div class="box">
+      <ul>
+        <h2>{{sentBy}} said: {{body}}</h2> <p> @ {{createdAt}}</p>
+      </ul>
+    </div>
+  {{/each}}
+</div>
+{{/if}}
 </template>
