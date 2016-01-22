@@ -1,3 +1,6 @@
+<head>
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
 <body>
 {{> loginButtons}}
 {{> chatBox}}
@@ -5,18 +8,22 @@
 </body>
 
 <template name="messagebox">
+  <div class="msgEnter">
   {{#if currentUser}}
-  <form>
+  <form class="messageContent">
         <input type="text" name="mesg">
         <input type="submit" value="Enter">
   </form>
   {{/if}}
+  </div>
 </template>
 
 <template name= "chatBox">
 {{#each messages}}
-  <ul>
-  <li><h2>{{sentBy}} said:</h2></li><h3>{{body}}</h3> <p> @ {{createdAt}}</p>
+<div class="box">
+<ul>
+  <h2>{{sentBy}} said: {{body}}</h2> <p> @ {{createdAt}}</p>
   </ul>
+  </div>
 {{/each}}
 </template>
