@@ -2,31 +2,35 @@
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 <body>
+<div id="tails">
+  <img src="/assets/9TailsTitle.png" alt="Cursive Fonts">
+</div>
+<div id="loginSection">
 {{> loginButtons}}
+</div>
+{{#if checkChat}}
+<div id="chat">
 {{> chatBox}}
 {{> messagebox}}
-{{> chatButton}}
+</div>
+{{/if}}
+<div class="grid">
+<img src="/assets/testimg1.jpg">
+<img src="/assets/testimg2.jpg">
+<img src="/assets/testimg3.jpg">
+<img src="/assets/testimg1.jpg">
+</div>
 </body>
 
 <template name="messagebox">
-  <div class="msgEnter">
     {{#if currentUser}}
       <form class="messageContent">
-        <input type="text" name="mesg">
-        <input type="submit" value="Enter">
+        <input type="text" class="msgText" name="mesg" maxlength="25" autofocus placeholder="Enter Message Here">
     </form>
     {{/if}}
-  </div>
-</template>
-
-<template name= "chatButton">
-  <form class="chatOpen">
-    <input type="submit" value="Open Chat">
-  </form>
 </template>
 
 <template name= "chatBox">
-{{#if checkChat}}
 <div class="chatBoxBg">
   {{#each messages}}
     <div class="box">
@@ -36,5 +40,4 @@
     </div>
   {{/each}}
 </div>
-{{/if}}
 </template>
