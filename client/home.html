@@ -2,28 +2,42 @@
 <link rel="stylesheet" type="text/css" href="mystyle.css">
 </head>
 <body>
+<div id="tails">
+  <img src="/assets/9TailsTitle.png" alt="Cursive Fonts">
+</div>
+<div id="loginSection">
 {{> loginButtons}}
+</div>
+{{#if checkChat}}
+<div id="chat">
 {{> chatBox}}
 {{> messagebox}}
+</div>
+{{/if}}
+<div class="grid">
+<img src="/assets/testimg1.jpg">
+<img src="/assets/testimg2.jpg">
+<img src="/assets/testimg3.jpg">
+<img src="/assets/testimg1.jpg">
+</div>
 </body>
 
 <template name="messagebox">
-  <div class="msgEnter">
-  {{#if currentUser}}
-  <form class="messageContent">
-        <input type="text" name="mesg">
-        <input type="submit" value="Enter">
-  </form>
-  {{/if}}
-  </div>
+    {{#if currentUser}}
+      <form class="messageContent">
+        <input type="text" class="msgText" name="mesg" maxlength="25" autofocus placeholder="Enter Message Here">
+    </form>
+    {{/if}}
 </template>
 
 <template name= "chatBox">
-{{#each messages}}
-<div class="box">
-<ul>
-  <h2>{{sentBy}} said: {{body}}</h2> <p> @ {{createdAt}}</p>
-  </ul>
-  </div>
-{{/each}}
+<div class="chatBoxBg">
+  {{#each messages}}
+    <div class="box">
+      <ul>
+        <h2>{{sentBy}} said: {{body}}</h2> <p> @ {{createdAt}}</p>
+      </ul>
+    </div>
+  {{/each}}
+</div>
 </template>
