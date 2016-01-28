@@ -1,5 +1,6 @@
 <head>
 <link rel="stylesheet" type="text/css" href="mystyle.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -8,10 +9,12 @@
   <img src="/assets/9TailsTitle.png" alt="Cursive Fonts">
 </div>
 
-<div id="loginSection">
-{{> loginButtons}}
-</div>
+<center><h1>Locations</h1></center>
+{{> location}}
 
+<span id="loginSection">
+{{> loginButtons}}
+</span>
 {{#if checkChat}}
 <div id="chat">
 {{> chatBox}}
@@ -19,30 +22,35 @@
 </div>
 {{/if}}
 
-<div class="grid">
-<img src="/assets/testimg1.jpg">
-<img src="/assets/testimg2.jpg">
-<img src="/assets/testimg3.jpg">
-<img src="/assets/testimg1.jpg">
-</div>
 
 </body>
 
+<template name = "map">
+<div class="map-container">
+    {{> googleMap name="exampleMap" options=exampleMapOptions}}
+  </div>
+</template>
+<template name="location">
+<div id='loc'>
+{{#each geolocation}}
+  <h2>LAT: {{lat}}  LONG: {{longi}}</h2>
+  {{/each}}
+  </div>
+</template>
 <template name="messagebox">
     {{#if currentUser}}
       <form class="messageContent">
-        <input type="text" class="msgText" name="mesg" autofocus placeholder="Enter Message Here">
+        <input type="text" class="msgText" name="mesg" autofocus placeholder="Chat Away">
     </form>
     {{/if}}
 </template>
 
 <template name= "chatBox">
 <div class="chatBoxBg">
+<center><h1>Chat</h1></center>
   {{#each messages}}
     <div class="box">
-      <ul>
-        <h2>{{sentBy}} said: {{body}}</h2> <p> @ {{createdAt}}</p>
-      </ul>
+        <h2>{{sentBy}} said: {{body}}</h2>
     </div>
   {{/each}}
 </div>

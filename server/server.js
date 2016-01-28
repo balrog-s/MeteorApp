@@ -4,7 +4,9 @@ if(Meteor.isServer){
     Messages.insert({
       body: 'Welcome to 9Tails!',
       sentBy: 'System',
-      createdAt: new Date()
+      createdAt: new Date(),
+      lat: 0,
+      longi: 0
     });
   }
 

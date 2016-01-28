@@ -4,7 +4,7 @@ if(Meteor.isClient){
 
   //reactive variable for determining whether chat is open or not. Initialized to a closed chat.
   Session.set('isChatOpen', false);
-
+  Session.set('coordinates');
   //when the ctrl key is clicked the chat will open
   Meteor.startup(function () {
       $(document).on('keyup', function (e) {
@@ -23,7 +23,21 @@ if(Meteor.isClient){
 
   Template.body.helpers({
     checkChat: function(){
+      Session.set('coordinates', Geolocation.latLng());
       return Session.get('isChatOpen');
+    }
+  });
+
+  Template.location.helpers({
+    geolocation: function(){
+      return GLocation.find({});
+    }
+  })
+
+  Template.messagebox.helpers({
+    geolocationError: function() {
+    var error = Geolocation.error();
+    return error && error.message;
     }
   });
 
@@ -34,14 +48,21 @@ if(Meteor.isClient){
       //prevent default browser action on submit
       event.preventDefault();
       var usermessage = event.target.mesg.value;
+      var findLat = Session.get('coordinates').lat;
+      var findLongi = Session.get('coordinates').lng;
 
       if(usermessage.length != 0){
       //inserting the message specified into the Messages Collection
       Messages.insert({
         body: usermessage,
         sentBy: Meteor.user().username,
-        createdAt: new Date()
+        createdAt: new Date(),
       });
+      GLocation.insert({
+        lat: findLat,
+        longi: findLongi
+      });
+      console.log(GLocation.find({}));
     }
 
       //reset the value in the messagebox
