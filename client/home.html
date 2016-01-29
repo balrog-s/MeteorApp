@@ -5,38 +5,31 @@
 
 <body>
 
-<div id="tails">
-  <img src="/assets/9TailsTitle.png" alt="Cursive Fonts">
-</div>
-
-<center><h1>Locations</h1></center>
-{{> location}}
-
 <span id="loginSection">
 {{> loginButtons}}
 </span>
-{{#if checkChat}}
+<h1>PRESS CTRL TO OPEN CHAT.</h1>
 <div id="chat">
 {{> chatBox}}
 {{> messagebox}}
 </div>
-{{/if}}
-
-
+{{> map}}
 </body>
 
-<template name = "map">
-<div class="map-container">
-    {{> googleMap name="exampleMap" options=exampleMapOptions}}
+<template name="map">
+  <div class="map-container">
+    {{> googleMap name="map" options=mapOptions}}
   </div>
 </template>
+
 <template name="location">
 <div id='loc'>
-{{#each geolocation}}
-  <h2>LAT: {{lat}}  LONG: {{longi}}</h2>
+{{#each messages}}
+  <h2>LAT: {{latitude}}  LONG: {{longitude}}</h2>
   {{/each}}
   </div>
 </template>
+
 <template name="messagebox">
     {{#if currentUser}}
       <form class="messageContent">
@@ -47,11 +40,8 @@
 
 <template name= "chatBox">
 <div class="chatBoxBg">
-<center><h1>Chat</h1></center>
   {{#each messages}}
-    <div class="box">
         <h2>{{sentBy}} said: {{body}}</h2>
-    </div>
   {{/each}}
 </div>
 </template>
