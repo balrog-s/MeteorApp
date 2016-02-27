@@ -11,6 +11,12 @@ meteor list
 ```
 command.
 
+##Run the application
+```
+meteor run
+```
+Navigate to localhost:3000 to see the running application.
+
 ##Future Work
 *Allow users to upload images
 *Allow users to privately message one another
